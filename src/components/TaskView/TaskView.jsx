@@ -1,6 +1,11 @@
 import React from "react";
+import PropTypes from "prop-types";
 
-export function TaskView({ task: { id, title, state } }) {
+export function TaskView(
+	{ task: { id, title, state } },
+	onPinTask,
+	onArchiveTask,
+) {
 	return (
 		<div className={`list-item ${state}`}>
 			<label className='checkbox'>
@@ -10,7 +15,9 @@ export function TaskView({ task: { id, title, state } }) {
 					disabled={true}
 					name='checked'
 				/>
-				<span className='checkbox-custom'></span>
+				<span
+					className='checkbox-custom'
+					onClick={() => onArchiveTask(id)}></span>
 			</label>
 			<div className='title'>
 				<input
@@ -22,11 +29,21 @@ export function TaskView({ task: { id, title, state } }) {
 			</div>
 			<div className='actions'>
 				{state !== "TASK_ARCHIVED" && (
-					<a>
+					<div onClick={() => onPinTask(id)}>
 						<span className={`icon-star`} />
-					</a>
+					</div>
 				)}
 			</div>
 		</div>
 	);
 }
+
+TaskView.propTypes = {
+	task: PropTypes.shape({
+		id: PropTypes.string,
+		title: PropTypes.string,
+		state: PropTypes.string,
+	}).isRequired,
+	onPinTask: PropTypes.func.isRequired,
+	onArchiveTask: PropTypes.func.isRequired,
+};

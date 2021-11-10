@@ -1,5 +1,5 @@
 import React from "react";
-
+import * as TaskStories from "../TaskView/TaskView.stories";
 import { TaskListView } from "./TaskListView";
 
 export default {
@@ -27,34 +27,34 @@ Default.args = {
 	loading: false,
 	tasks: [
 		{
+			...TaskStories.Default.args.tasks,
 			id: "1",
-			title: "Task 1",
-			state: "TASK_INBOX",
+			title: "Test Task 1",
 		},
 		{
+			...TaskStories.Default.args.tasks,
 			id: "2",
-			title: "Task 2",
-			state: "TASK_INBOX",
+			title: "Test Task 2",
 		},
 		{
+			...TaskStories.Default.args.tasks,
 			id: "3",
-			title: "Task 3",
-			state: "TASK_INBOX",
+			title: "Test Task 3",
 		},
 		{
+			...TaskStories.Default.args.tasks,
 			id: "4",
-			title: "Task 4",
-			state: "TASK_INBOX",
+			title: "Test Task 4",
 		},
 		{
+			...TaskStories.Default.args.tasks,
 			id: "5",
-			title: "Task 5",
-			state: "TASK_INBOX",
+			title: "Test Task 5",
 		},
 		{
+			...TaskStories.Default.args.tasks,
 			id: "6",
-			title: "Task 6",
-			state: "TASK_INBOX",
+			title: "Test Task 6",
 		},
 	],
 };

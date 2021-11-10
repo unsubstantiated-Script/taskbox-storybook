@@ -1,14 +1,30 @@
 import React from "react";
 import { HomePage } from "./HomePage";
+import { Provider } from "react-redux";
+//Mock up our Redux store...
+import { action } from "@storybook/addon-actions";
+import * as TaskListStories from "../../components/TaskListView/TaskListView.stories";
+
+const store = {
+	getState: () => {
+		return {
+			tasks: TaskListStories.Default.args.tasks,
+		};
+	},
+	subscribe: () => 0,
+	dispatch: action("dispatch"),
+};
 
 export default {
 	title: "Page/Home",
 	component: HomePage,
+	decorators: [(story) => <Provider store={store}>{story()}</Provider>],
 };
 
 const Template = (args) => <HomePage {...args} />;
 
 export const Default = Template.bind({});
+/*Now using Redux...yay...
 Default.args = {
 	error: "",
 	loading: false,
@@ -30,17 +46,9 @@ Default.args = {
 		},
 	],
 };
-
-export const LoadWithNoTasks = Template.bind({});
-LoadWithNoTasks.args = {
-	error: "",
-	loading: false,
-	tasks: [],
-};
+*/
 
 export const ErrorMsg = Template.bind({});
 ErrorMsg.args = {
 	error: "Error message goes here",
-	loading: false,
-	tasks: [],
 };

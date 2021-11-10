@@ -1,7 +1,10 @@
 import React from "react";
-import { TaskView } from "../TaskView/TaskView";
+import PropTypes from "prop-types";
+import TaskView from "../TaskView";
 
-export function TaskListView({ loading, tasks }) {
+export function TaskListView({ loading, tasks, onPinTask, onArchiveTask }) {
+	tasks = tasks || [];
+	const events = { onPinTask, onArchiveTask };
 	const loadRow = (
 		<div className='loading-item'>
 			<span className='glow-checkbox' />
@@ -43,8 +46,19 @@ export function TaskListView({ loading, tasks }) {
 	return (
 		<div className='list-items'>
 			{tasksInOrder.map((task) => (
-				<TaskView key={task.id} task={task} />
+				<TaskView key={task.id} task={task} {...events} />
 			))}
 		</div>
 	);
 }
+
+TaskListView.propTypes = {
+	loading: PropTypes.bool,
+	tasks: PropTypes.arrayOf(TaskView.propTypes.task).isRequired,
+	onPinTask: PropTypes.func.isRequired,
+	onArchiveTask: PropTypes.func.isRequired,
+};
+
+TaskListView.defaultProps = {
+	loading: false,
+};

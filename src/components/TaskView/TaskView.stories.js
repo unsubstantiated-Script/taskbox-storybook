@@ -1,5 +1,4 @@
 import React from "react";
-
 import { TaskView } from "./TaskView";
 
 export default {

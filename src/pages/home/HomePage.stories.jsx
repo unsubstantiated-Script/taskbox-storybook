@@ -2,10 +2,11 @@ import React from "react";
 import { HomePage } from "./HomePage";
 import { Provider } from "react-redux";
 //Mock up our Redux store...
-import { action } from "@storybook/addon-actions";
-import * as TaskListStories from "../../components/TaskListView/TaskListView.stories";
+//import { action } from "@storybook/addon-actions";
+//import * as TaskListStories from "../../components/TaskListView/TaskListView.stories";
+import { store } from "../../lib/store";
 
-const store = {
+/*const store = {
 	getState: () => {
 		return {
 			tasks: TaskListStories.Default.args.tasks,
@@ -13,7 +14,7 @@ const store = {
 	},
 	subscribe: () => 0,
 	dispatch: action("dispatch"),
-};
+}; */
 
 export default {
 	title: "Page/Home",

@@ -1,10 +1,24 @@
 import React from "react";
 import PropTypes from "prop-types";
-import TaskView from "../TaskView";
+import { TaskView } from "../TaskView/TaskView";
 
-export function TaskListView({ loading, tasks, onPinTask, onArchiveTask }) {
-	tasks = tasks || [];
-	const events = { onPinTask, onArchiveTask };
+import { selectTasks, archiveTask, pinTask } from "../../lib/tasksSlice";
+import { useSelector, useDispatch } from "react-redux";
+
+export function TaskListView({ loading, tasks }) {
+	const storedTasks = useSelector(selectTasks);
+
+	if (storedTasks && storedTasks.length > 0) {
+		tasks = storedTasks;
+	}
+
+	const dispatch = useDispatch();
+
+	const events = {
+		onPinTask: (id) => dispatch(pinTask(id)),
+		onArchiveTask: (id) => dispatch(archiveTask(id)),
+	};
+
 	const loadRow = (
 		<div className='loading-item'>
 			<span className='glow-checkbox' />

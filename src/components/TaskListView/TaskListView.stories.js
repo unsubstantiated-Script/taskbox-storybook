@@ -1,10 +1,23 @@
 import React from "react";
 import * as TaskStories from "../TaskView/TaskView.stories";
 import { TaskListView } from "./TaskListView";
+import { Provider } from "react-redux";
+import { action } from "@storybook/addon-actions";
+
+const store = {
+	getState: () => {
+		return {
+			tasks: null,
+		};
+	},
+	subscribe: () => 0,
+	dispatch: action("dispatch"),
+};
 
 export default {
 	title: "Components/TaskListView",
 	component: TaskListView,
+	decorators: [(story) => <Provider store={store}>{story()}</Provider>],
 };
 
 const Template = (args) => <TaskListView {...args} />;

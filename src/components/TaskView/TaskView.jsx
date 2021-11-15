@@ -1,23 +1,21 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-export function TaskView(
-	{ task: { id, title, state } },
+export function TaskView({
+	task: { id, title, state },
 	onPinTask,
 	onArchiveTask,
-) {
+}) {
 	return (
 		<div className={`list-item ${state}`}>
 			<label className='checkbox'>
 				<input
 					type='checkbox'
-					defaultChecked={state === "TASK_ARCHIVED"}
+					checked={state === "TASK_ARCHIVED"}
 					disabled={true}
 					name='checked'
 				/>
-				<span
-					className='checkbox-custom'
-					onClick={() => onArchiveTask(id)}></span>
+				<span className='checkbox-custom' onClick={() => onArchiveTask(id)} />
 			</label>
 			<div className='title'>
 				<input

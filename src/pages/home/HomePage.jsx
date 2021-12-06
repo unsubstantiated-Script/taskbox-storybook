@@ -20,7 +20,7 @@ export function HomePage({ error }) {
 			<nav>
 				<h1 className='title-wrapper'>Taskbox - Fall 2021</h1>
 			</nav>
-			<TaskListView />
+			{/* <TaskListView /> */}
 		</div>
 	);
 }

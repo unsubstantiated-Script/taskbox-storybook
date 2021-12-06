@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { TaskView } from "../TaskView/TaskView";
 
-import { selectTasks, archiveTask, pinTask } from "../../lib/tasksSlice";
+import { selectTasks, updateTask } from "../../lib/tasksSlice";
 import { useSelector, useDispatch } from "react-redux";
 
 export function TaskListView({ loading, tasks }) {
@@ -15,8 +15,8 @@ export function TaskListView({ loading, tasks }) {
 	const dispatch = useDispatch();
 
 	const events = {
-		onPinTask: (id) => dispatch(pinTask(id)),
-		onArchiveTask: (id) => dispatch(archiveTask(id)),
+		onPinTask: (task) => dispatch(updateTask(task)),
+		onArchiveTask: (task) => dispatch(updateTask(task)),
 	};
 
 	const loadRow = (
@@ -66,13 +66,13 @@ export function TaskListView({ loading, tasks }) {
 	);
 }
 
-TaskListView.propTypes = {
-	loading: PropTypes.bool,
-	tasks: PropTypes.arrayOf(TaskView.propTypes.task).isRequired,
-	onPinTask: PropTypes.func.isRequired,
-	onArchiveTask: PropTypes.func.isRequired,
-};
+// TaskListView.propTypes = {
+// 	loading: PropTypes.bool,
+// 	tasks: PropTypes.arrayOf(TaskView.propTypes.task).isRequired,
+// 	onPinTask: PropTypes.func.isRequired,
+// 	onArchiveTask: PropTypes.func.isRequired,
+// };
 
-TaskListView.defaultProps = {
-	loading: false,
-};
+// TaskListView.defaultProps = {
+// 	loading: false,
+// };
